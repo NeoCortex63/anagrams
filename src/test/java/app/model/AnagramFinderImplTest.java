@@ -19,14 +19,14 @@ class AnagramFinderImplTest {
         List<Set<String>> listFromFile = finder.getListOfAnagrams(Path.of("src/test/resources/sample.txt"));
         listFromFile.sort(Comparator.comparingInt(Set::size));
 
-        List<String> allWordInFile = listFromFile.stream()
+        List<String> allWordsInFile = listFromFile.stream()
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
 
         assertEquals(2,listFromFile.size());
         assertTrue(listFromFile.get(0).containsAll(Arrays.asList("cat","act")));
         assertTrue(listFromFile.get(1).containsAll(Arrays.asList("acre","care","race")));
-        assertFalse(allWordInFile.contains("tree"));
+        assertFalse(allWordsInFile.contains("tree"));
 
     }
 
