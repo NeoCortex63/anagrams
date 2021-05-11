@@ -21,7 +21,7 @@ public class Main {
 
             AnagramFinder anagramFinder = new AnagramFinderImpl();
 
-            if (!isFileBiggerThen100MB()){
+            if (isFileBiggerThen100MB()){
                 anagramFinder = new BigFileAnagramFinder();
             }
             anagramFinder.printAllAnagrams(pathToFile);
