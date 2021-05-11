@@ -21,7 +21,7 @@ After building the **finder.jar**, use following:
 ```
 java -cp finder.jar app.Main <path_to_your_file>
 ```
-There is **dictionary.txt** in the **main.resources** directory, that could be used like example.
+There is **dictionary.txt** in the **main/resources** directory, that could be used like example.
 
 ```
 java -cp finder.jar app.Main src/main/resources/dictionary.txt
