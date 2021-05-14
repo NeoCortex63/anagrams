@@ -14,8 +14,11 @@ public class ReduceFunction implements BinaryOperator<Map<String, Set<String>>>,
     public Map<String, Set<String>> apply(Map<String, Set<String>> map1, Map<String, Set<String>> map2) {
 
         String key = map2.keySet().stream().findFirst().orElseThrow();
+        
         if(!map1.containsKey(key)) map1.put(key,new HashSet<>());
+        
         map1.get(key).addAll(map2.get(key));
+       
         return map1;
     }
 }
