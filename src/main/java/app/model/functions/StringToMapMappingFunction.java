@@ -17,9 +17,13 @@ public class StringToMapMappingFunction implements Function<String, Map<String, 
     public Map<String, Set<String>> apply(String s) {
 
         Map<String, Set<String>> groupedWords = new HashMap<>();
+        
         Set<String> words = new HashSet<>();
+        
         words.add(s);
+        
         groupedWords.put(AnagramFinder.getKey(s),words);
+        
         return groupedWords;
     }
 }
