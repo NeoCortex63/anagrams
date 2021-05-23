@@ -37,12 +37,15 @@ public class AnagramFinderImpl implements AnagramFinder {
 
     public Map<String,Set<String>> groupWordsByKey(Path path) throws IOException {
 
-        return Files.lines(path)
-                .parallel()
-                .collect(Collectors.groupingBy(
-                        AnagramFinder::getKey,
-                        ConcurrentHashMap::new,
-                        Collectors.toSet())
-                );
+      try(Stream<String> stream = Files.lines(path)) {
+                
+            return stream
+                        .parallel()
+                        .collect(Collectors.groupingBy(
+                                AnagramFinder::getKey,
+                                ConcurrentHashMap::new,
+                                Collectors.toSet())
+                        );
+        }
     }
 }
