@@ -39,7 +39,7 @@ world -> [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0
 I used Map<String, Set<String>> for grouping elements and Set of original words for avoiding duplicates. Map was created by using paralell stream from file, therefore I used ConcurrentHashMap. Then I just filtered Sets with
 size < 2 (this words do not have anagrams).
 
-I tried to use this method for a huge file and have got utOfMemoryError: Java heap space.
+I tried to use this method for a huge file and have got outOfMemoryError: Java heap space.
 So I decided to use a Apache Spark for a large-scale data processing. The another AnogramFinder implementation is BigFileAnagramFinder. In Purpose of increasing the Maintainability and code Readability, map and reduce function have been moved to a new package.
 The main method takes path to the file as args parameter and print all anagrams. If the file is huge- it uses BigFileAnagramFinder implemetation. If You need to check it, You could change the code and rebuild the project.
 
