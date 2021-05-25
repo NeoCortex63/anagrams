@@ -44,4 +44,4 @@ So I decided to use a Apache Spark for a large-scale data processing. The anothe
 The main method takes path to the file as args parameter and print all anagrams. If the file is huge- it uses BigFileAnagramFinder implemetation. If You need to check it, You could change the code and rebuild the project.
 
 
-I also used a maven-assembly-plugin for building a Fat Jar. It contains all the compiled Java classes from the project, and all compiled Java classes from all JAR files the project depends on. 
+I also used a maven-assembly-plugin for building a Fat Jar. It contains all the compiled Java classes from the project and all compiled Java classes from all JAR files the project depends on. 
