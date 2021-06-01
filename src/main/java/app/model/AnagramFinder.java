@@ -10,18 +10,4 @@ public interface AnagramFinder {
 
     void printAllAnagrams(String path) throws IOException;
 
-    //counting amount of each letter
-    static String getKey(String word){
-
-        char[] chars = word.toLowerCase().toCharArray();
-
-        int[] key = new int[26];
-
-        for (char c : chars) {
-
-            key[c - 'a']++;
-        }
-
-        return Arrays.toString(key);
-    }
 }

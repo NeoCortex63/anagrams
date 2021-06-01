@@ -1,7 +1,5 @@
+package app.model;
 
-
-import app.model.AnagramFinder;
-import app.model.AnagramFinderImpl;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -16,23 +14,22 @@ class AnagramFinderImplTest {
     void getListOfAnagramsTest() throws IOException {
         AnagramFinderImpl finder = new AnagramFinderImpl();
 
-        List<Set<String>> listFromFile = finder.getListOfAnagrams(Path.of("src/test/resources/sample.txt"));
+        List<Set<Word>> listFromFile = finder.getListOfAnagrams(Path.of("src/test/resources/sample.txt"));
         listFromFile.sort(Comparator.comparingInt(Set::size));
 
-        List<String> allWordsInFile = listFromFile.stream()
+        List<Word> allWordsInFile = listFromFile.stream()
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
 
         assertEquals(2,listFromFile.size());
-        assertTrue(listFromFile.get(0).containsAll(Arrays.asList("cat","act")));
-        assertTrue(listFromFile.get(1).containsAll(Arrays.asList("acre","care","race")));
-        assertFalse(allWordsInFile.contains("tree"));
 
-    }
+        assertTrue(listFromFile.get(0).containsAll(Arrays.asList(new Word("cat"),new Word("act"))));
 
-    @Test
-    void getKeySetTest(){
-        assertEquals(AnagramFinder.getKey("dog"),AnagramFinder.getKey("god"));
+        assertTrue(listFromFile.get(1).containsAll(Arrays.asList(new Word("acre"),
+                new Word("care"),
+                new Word("race"))));
+        assertFalse(allWordsInFile.contains(new Word("tree")));
+
     }
 
 }

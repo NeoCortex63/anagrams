@@ -7,6 +7,7 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class AnagramFinderImpl implements AnagramFinder {
@@ -16,11 +17,11 @@ public class AnagramFinderImpl implements AnagramFinder {
         getListOfAnagrams(path).forEach(System.out::println);
     }
 
-    public List<Set<String>> getListOfAnagrams(Path path) throws IOException {
+    public List<Set<Word>> getListOfAnagrams(Path path) throws IOException {
 
-        Map<String, Set<String>> groupedWords = groupWordsByKey(path);
+        Map<String, Set<Word>> groupedWords = groupWordsByKey(path);
 
-        List<Set<String>> allAnagrams = new CopyOnWriteArrayList<>();
+        List<Set<Word>> allAnagrams = new CopyOnWriteArrayList<>();
 
         groupedWords.values().stream()
                 .parallel()
@@ -35,14 +36,15 @@ public class AnagramFinderImpl implements AnagramFinder {
         printAllAnagrams(Path.of(path));
     }
 
-    public Map<String,Set<String>> groupWordsByKey(Path path) throws IOException {
+    public Map<String,Set<Word>> groupWordsByKey(Path path) throws IOException {
 
       try(Stream<String> stream = Files.lines(path)) {
                 
             return stream
                         .parallel()
+                        .map(Word::new)
                         .collect(Collectors.groupingBy(
-                                AnagramFinder::getKey,
+                                Word::getKey,
                                 ConcurrentHashMap::new,
                                 Collectors.toSet())
                         );
